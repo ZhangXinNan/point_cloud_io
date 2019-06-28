@@ -4,6 +4,9 @@ project(point_cloud_io)
 ## Use C++11
 add_definitions(--std=c++11)
 
+SET(CMAKE_BUILD_TYPE "Debug")
+SET(CMAKE_CXX_FLAGS_DEBUG "$ENV{CXXFLAGS} -O0 -Wall -g -ggdb")
+
 ## Find catkin macros and libraries
 find_package(catkin REQUIRED
   COMPONENTS
@@ -50,6 +53,11 @@ add_executable(
   src/Read.cpp
 )
 add_executable(
+  read2
+  src/read_node2.cpp
+  src/Read2.cpp
+)
+add_executable(
   write
   src/write_node.cpp
   src/Write.cpp
@@ -58,6 +66,10 @@ add_executable(
 ## Specify libraries to link executable targets against
 target_link_libraries(
   read
+  ${catkin_LIBRARIES}
+)
+target_link_libraries(
+  read2
   ${catkin_LIBRARIES}
 )
 target_link_libraries(
